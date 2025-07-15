@@ -234,7 +234,9 @@ func main() {
 	if isInstalled("yt-dlp") {
 		yt_dlp_path = "yt-dlp"
 	} else {
-		yt_dlp_path = "." + string(filepath.Separator) + "yt-dlp"
+		binary_path, _ := os.Executable()
+		binary_dir := filepath.Dir(binary_path)
+		yt_dlp_path = binary_dir + string(filepath.Separator) + "yt-dlp"
 	}
 
 	home_path, _ := os.UserHomeDir()
@@ -248,7 +250,6 @@ func main() {
 
 	ytApp := app.New()
 	window := ytApp.NewWindow("Youtube Media Downloader")
-
 	url_input := widget.NewEntry()
 	url_input.SetPlaceHolder("URL")
 	// url_input.Text = "https://youtu.be/rJNBGqiBI7s?si=quoUqCGSJaUDFywQ"
