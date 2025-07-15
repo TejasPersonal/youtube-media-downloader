@@ -1,0 +1,1 @@
+![App Screenshot](screenshot.png)
