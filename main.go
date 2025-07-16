@@ -239,7 +239,7 @@ func main() {
 		yt_dlp_path = binary_dir + string(filepath.Separator) + "yt-dlp"
 	}
 
-	home_path, _ := os.UserHomeDir()
+	videos_path := GetVideoFolder()
 	var video Video
 
 	var video_codecs map[string]string
@@ -307,11 +307,11 @@ func main() {
 	merge := widget.NewCheck("Merge video and audio", nil)
 	merge.SetChecked(true)
 
-	directory_label := widget.NewLabel("Media folder:")
+	directory_label := widget.NewLabel("Download folder:")
 	directory_label.Wrapping = fyne.TextWrapBreak
 
 	directory := widget.NewEntry()
-	directory.SetText(home_path + string(filepath.Separator) + "Videos" + string(filepath.Separator) + "Youtube")
+	directory.SetText(videos_path)
 
 	download_button := widget.NewButton("Download", nil)
 	download_button.OnTapped = func() {
